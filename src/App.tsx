@@ -1,6 +1,11 @@
 import React, { useState, createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/header";
 import Home from "./pages/home";
+import About from "./pages/about";
+import Skills from "./pages/skills";
+import Experience from "./pages/experience";
+import Contacts from "./pages/contacts";
 
 interface AppContextInterface {
   theme: string;
@@ -19,8 +24,13 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/contacts" element={<Contacts />} />
         </Routes>
       </BrowserRouter>
     </ThemeContext.Provider>
