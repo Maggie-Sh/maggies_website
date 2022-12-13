@@ -1,4 +1,6 @@
 import React, { useState, createContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
 
 interface AppContextInterface {
   theme: string;
@@ -16,7 +18,11 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div>Welcome</div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeContext.Provider>
   );
 }
