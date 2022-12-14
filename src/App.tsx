@@ -8,7 +8,7 @@ import Experience from "./pages/experience";
 import Contacts from "./pages/contacts";
 import { Theme, light, dark } from "./theme/theme";
 
-interface AppContextInterface {
+export interface AppContextInterface {
   theme: Theme;
   toggleTheme: () => void;
 }

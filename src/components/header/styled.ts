@@ -33,11 +33,9 @@ export const NavBackground = styled.div`
     inset: 0;
     width: 100%;
     height: 100vh;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 300ms cubic-bezier(0.85, 0.01, 0.4, 1);
+    display: none;
     &.show {
-      transform: scaleX(1);
+      display: block;
     }
   }
 `;
@@ -46,12 +44,22 @@ export const Nav = styled.nav`
   ${df_ac_jsb}
   gap:20px;
   @media (max-width: 768px) {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     ${dfc_as_jcs}
     padding: 20px;
     width: 50%;
     height: 100%;
     background-color: ${({ theme }) => theme.primary};
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms cubic-bezier(0.85, 0.01, 0.4, 1);
+    overflow: hidden;
+    &.show {
+      transform: scaleX(1);
+    }
   }
   @media (max-width: 480px) {
     width: 100%;
@@ -97,6 +105,8 @@ export const CustomLink = styled(NavLink)`
 `;
 
 export const IconButton = styled.button`
+  max-width: 24px;
+  max-height: 24px;
   margin-left: auto;
   & svg {
     fill: ${({ theme }) => theme.primary};
@@ -109,6 +119,7 @@ export const IconButton = styled.button`
 export const MenuButton = styled.button`
   width: 26px;
   height: 24px;
+  padding: 2px;
   ${df_ac_jc}
   flex-direction: column;
   gap: 5px;
@@ -117,5 +128,8 @@ export const MenuButton = styled.button`
     height: 3px;
     border-radius: 10px;
     background-color: ${({ theme }) => theme.primary};
+  }
+  @media (min-width: 769px) {
+    display: none;
   }
 `;
