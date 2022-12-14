@@ -6,19 +6,20 @@ import About from "./pages/about";
 import Skills from "./pages/skills";
 import Experience from "./pages/experience";
 import Contacts from "./pages/contacts";
+import { Theme, light, dark } from "./theme/theme";
 
 interface AppContextInterface {
-  theme: string;
+  theme: Theme;
   toggleTheme: () => void;
 }
 
 export const ThemeContext = createContext<AppContextInterface | null>(null);
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(light);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => (prev === light ? dark : light));
   };
 
   return (
