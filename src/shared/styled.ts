@@ -25,6 +25,7 @@ export const dfc_as_jcs = css`
 `;
 
 export const Main = styled.main`
+  background-color: ${({ theme }) => theme.secondary_background};
   padding: 0 40px;
   @media (max-width: 1024px) {
     padding: 0 20px;
