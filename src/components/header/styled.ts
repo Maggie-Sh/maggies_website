@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { df_ac_jsb, dfc_as_jcs, df_ac_jc } from "../../styled";
+import { df_ac_jsb, dfc_as_jcs, df_ac_jc } from "../../shared/styled";
 import { NavLink } from "react-router-dom";
 
 const underline = css`
@@ -28,14 +28,15 @@ export const HeaderSt = styled.header`
 `;
 
 export const NavBackground = styled.div`
-  @media (max-width: 768px), (min-width: 421px) {
+  @media (max-width: 768px) {
     position: absolute;
     inset: 0;
-    width: 100%;
+    width: 0;
+    transition: width 300ms cubic-bezier(0.85, 0.01, 0.4, 1);
     height: 100vh;
-    display: none;
+    overflow: hidden;
     &.show {
-      display: block;
+      width: 100%;
     }
   }
 `;
@@ -44,22 +45,13 @@ export const Nav = styled.nav`
   ${df_ac_jsb}
   gap:20px;
   @media (max-width: 768px) {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
     ${dfc_as_jcs}
+    gap:0;
     padding: 20px;
     width: 50%;
     height: 100%;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.background};
     box-shadow: 4px 8px 12px rgba(0, 0, 0, 0.2);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 300ms cubic-bezier(0.85, 0.01, 0.4, 1);
-    overflow: hidden;
-    &.show {
-      transform: scaleX(1);
-    }
   }
   @media (max-width: 480px) {
     width: 100%;
@@ -77,6 +69,7 @@ export const CustomLink = styled(NavLink)`
   &::after {
     content: "";
     ${underline}
+
     transform: scale(0);
     transform-origin: left;
     ${linktransition}
@@ -92,27 +85,45 @@ export const CustomLink = styled(NavLink)`
   &.active {
     &::after {
       top: 50%;
-      transform: translateY(-50%) scale(1);
+      width: 100%;
+      transform: translateY(-50%);
       background-color: ${({ theme }) => theme.primary};
     }
   }
   @media (max-width: 768px) {
-    color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.primary};
+    margin-bottom: 20px;
     &.active::after {
-      background-color: ${({ theme }) => theme.background};
+      background-color: ${({ theme }) => theme.primary};
     }
   }
 `;
 
 export const IconButton = styled.button`
-  max-width: 24px;
-  max-height: 24px;
+  & .MuiSvgIcon-root {
+    width: 24px;
+    height: 24px;
+  }
   margin-left: auto;
   & svg {
     fill: ${({ theme }) => theme.primary};
   }
   & .dark {
     transform: rotate(180deg);
+  }
+  &.close {
+    & .MuiSvgIcon-root {
+      width: 30px;
+      height: 30px;
+    }
+    & svg {
+      fill: ${({ theme }) => theme.primary};
+    }
+  }
+  @media (min-width: 769px) {
+    &.close {
+      display: none;
+    }
   }
 `;
 

@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+export const df_ac = css`
+  display: flex;
+  align-items: center;
+`;
+
 export const df_ac_jsb = css`
   display: flex;
   align-items: center;
