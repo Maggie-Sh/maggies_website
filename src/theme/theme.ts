@@ -4,6 +4,7 @@ export interface Theme {
   secondary: string;
   background: string;
   secondary_background: string;
+  scrollbar_color: string;
 }
 
 export const light: Theme = {
@@ -13,6 +14,7 @@ export const light: Theme = {
   // secondary: "#a39193",
   background: "#f4ece6",
   secondary_background: "#f9f5f3",
+  scrollbar_color: "#c2bebc",
 };
 
 export const dark: Theme = {
@@ -21,6 +23,7 @@ export const dark: Theme = {
   secondary: "#eea990",
   background: "#404040",
   secondary_background: "#5a5a5a",
+  scrollbar_color: "#7d7d7d",
 };
 
 // primary: "#66545e",

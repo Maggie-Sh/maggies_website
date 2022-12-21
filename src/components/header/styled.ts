@@ -31,6 +31,7 @@ export const NavBackground = styled.div`
   @media (max-width: 768px) {
     position: absolute;
     inset: 0;
+    z-index: 1;
     width: 0;
     transition: width 300ms cubic-bezier(0.85, 0.01, 0.4, 1);
     height: 100vh;

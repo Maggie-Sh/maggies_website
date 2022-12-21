@@ -7,7 +7,9 @@ import Skills from "./pages/skills";
 import Experience from "./pages/experience";
 import Contacts from "./pages/contacts";
 import { Theme, light, dark } from "./theme/theme";
-
+import { Container } from "./shared/styled";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 export interface AppContextInterface {
   theme: Theme;
   toggleTheme: () => void;
@@ -22,17 +24,24 @@ function App() {
     setTheme((prev) => (prev === light ? dark : light));
   };
 
+  const isShowMenu = useSelector((state: RootState) => state.isShowMenu);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/contacts" element={<Contacts />} />
-        </Routes>
+        <Container
+          theme={theme}
+          className={isShowMenu ? "overflow-hidden" : "overflow-overlay"}
+        >
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/contacts" element={<Contacts />} />
+          </Routes>
+        </Container>
       </BrowserRouter>
     </ThemeContext.Provider>
   );

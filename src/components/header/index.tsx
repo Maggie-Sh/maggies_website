@@ -13,16 +13,20 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import CloseIcon from "@mui/icons-material/Close";
 import { AppContextInterface } from "../../App";
+import { RootState } from "../../store";
+import { toggleMenu, hideMenu } from "../../features/isShowMenuSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const { theme, toggleTheme } = useContext(
     ThemeContext
   ) as AppContextInterface;
 
-  const [isShowMenu, setIsShowMenu] = useState(false);
+  const dispatch = useDispatch();
+  const isShowMenu = useSelector((state: RootState) => state.isShowMenu);
 
-  const handleToggle = () => setIsShowMenu((prev) => !prev);
-  const handleHideMenu = () => setIsShowMenu(false);
+  const handleToggle = () => dispatch(toggleMenu());
+  const handleHideMenu = () => dispatch(hideMenu());
 
   return (
     <HeaderSt theme={theme}>

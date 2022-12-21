@@ -34,7 +34,7 @@ const Slider = () => {
   };
 
   useEffect(() => {
-    console.log("hello", currentSlide);
+    // console.log("hello", currentSlide);
     setCurrentTranslate(currentSlide * -100);
   }, [currentSlide]);
 
@@ -70,7 +70,7 @@ const Slider = () => {
   };
   const onTouchEnd: EventHandler = (e, i) => {
     const mid = (itemsCount * 100) / 2;
-    console.log(currentTranslate);
+    // console.log(currentTranslate);
     const ind = Math.abs(Math.round(currentTranslate / 100));
     setCurrentSlide(ind);
     setIsDragging(false);
@@ -97,7 +97,7 @@ const Slider = () => {
                 e.stopPropagation();
               }}
               onTouchStart={(e) => {
-                console.log(e.type, "type");
+                // console.log(e.type, "type");
                 onTouchStart(e, i);
               }}
               onTouchEnd={(e) => onTouchEnd(e, i)}
