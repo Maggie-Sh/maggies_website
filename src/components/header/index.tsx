@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "../../App";
 import {
   CustomLink,
@@ -54,6 +54,13 @@ const Header = () => {
               {link.name}
             </CustomLink>
           ))}
+          <CustomLink
+            target="_blank"
+            rel="noreferrer"
+            to={require("../../assets/Margarit_Shakaryan_CV.pdf")}
+          >
+            cv
+          </CustomLink>
         </Nav>
       </NavBackground>
       <IconButton onClick={toggleTheme} theme={theme}>

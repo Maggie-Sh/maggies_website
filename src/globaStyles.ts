@@ -16,6 +16,10 @@ button {
   border: 0;
   cursor: pointer;
 }
+a {
+  text-decoration:none;
+  color:inherit;
+}
 /* *::-webkit-scrollbar {
   width: 5px;
 } */

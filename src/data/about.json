@@ -1,0 +1,29 @@
+{
+  "text": "   My passion for learning new things led me to programming and I immediately fell in love with it.\n   I am excited to create applications that can affect and improve many aspects of life, including healthcare and education.\n   My goal is to give users the best possible experience and I do believe that every decision should be made with the end user in mind.",
+  "education": [
+    {
+      "id": 1,
+      "org_name": "ACA (Armeinan Code Academy)",
+      "period": "Apr 2021 - Oct 2021",
+      "subject": "Javascript"
+    },
+    {
+      "id": 2,
+      "org_name": "ACA (Armeinan Code Academy)",
+      "period": "Feb 2021 - Mar 2021",
+      "subject": "Introduction to Javascript"
+    },
+    {
+      "id": 3,
+      "org_name": "Yerevan State Medical University after M. Heratsi",
+      "period": "2020 - 2021",
+      "subject": "Master's degree with honor in Pharmacy"
+    },
+    {
+      "id": 4,
+      "org_name": "Yerevan State Medical University after M. Heratsi",
+      "period": "2016 - 2020",
+      "subject": "Bachelor's degree in Pharmacy"
+    }
+  ]
+}

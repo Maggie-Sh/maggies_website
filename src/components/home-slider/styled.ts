@@ -1,80 +1,69 @@
 import styled from "styled-components";
-import { df_ac } from "../../shared/styled";
+import { df_ac, df_ac_jc, large_typo } from "../../shared/styled";
 
 export const Container = styled.section`
-  background-color: ${({ theme }) => theme.secondary_background};
-  padding: 30px;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  aspect-ratio: 2/1;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
   @media (max-width: 768px) {
     display: block;
-    aspect-ratio: unset;
   }
 `;
 
 export const ImageWrapper = styled.div`
+  min-width: 300px;
   & img {
     width: 100%;
     aspect-ratio: 1/1;
-    object-fit: contain;
-    object-position: left;
+    object-fit: cover;
   }
   @media (max-width: 768px) {
-    & img {
-      margin: 0 auto;
-      display: block;
-      height: 300px;
-      width: 300px;
-      object-position: center;
-    }
+    min-width: 0;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
   }
 `;
 
 export const SliderContainer = styled.div`
-  overflow: hidden;
-  position: relative;
+  @media (min-width: 769px) {
+    ${df_ac}
+    gap:20px;
+  }
 `;
 
-export const Slides = styled.ul.attrs((props) => {})`
+export const Slides = styled.div`
+  ${df_ac}
   width: 100%;
   height: 100%;
-  list-style-type: none;
-  ${df_ac}
-  transform: ${({ translate }) => `translateX(${translate}%)`};
-  transition: transform 0.3s ease-out;
+  overflow: hidden;
 `;
 
-export const Slide = styled.li`
+interface SlideProps {
+  transl?: number;
+}
+export const Slide = styled.div<SlideProps>`
   min-width: 100%;
+  width: fit-content;
   height: 100%;
   ${df_ac}
   justify-content: flex-end;
   color: ${({ theme }) => theme.primary};
-  & h3 {
+  transform: ${({ transl }) => `translateX(${transl}%)`};
+  transition: transform 250ms ease-out;
+  padding: 20px;
+  word-break: break-word;
+  text-align: right;
+  ${large_typo}
+  font-weight: 400;
+  font-style: italic;
+  @media (max-width: 768px) {
+    padding: 20px 50px;
+    text-align: center;
+    justify-content: center;
+  }
+  @media (max-width: 480px) {
     padding: 20px;
-    padding-right: 80px;
-    font-size: 48px;
-    line-height: 56px;
-    font-weight: 400;
-    text-align: right;
-    font-style: italic;
-    @media (max-width: 1024px) {
-      font-size: 36px;
-      line-height: 42px;
-    }
-    @media (max-width: 768px) {
-      font-size: 24px;
-      line-height: 28px;
-      & h3 {
-        padding: 20px;
-        padding-right: 50px;
-      }
-    }
-    @media (max-width: 420px) {
-      font-size: 20px;
-      line-height: 24px;
-    }
   }
 `;
 
@@ -82,19 +71,12 @@ export const IconButton = styled.button`
   border: 0;
   outline: 0;
   background-color: transparent;
-  position: absolute;
-  left: calc(100% - 60px);
-  top: 50%;
-  transform: translateY(-50%);
   & .MuiSvgIcon-root {
     min-width: 35px;
     height: auto;
   }
   @media (max-width: 768px) {
-    & .MuiSvgIcon-root {
-      min-width: 25px;
-      height: auto;
-    }
+    display: none;
   }
   & svg {
     fill: ${({ theme }) => theme.primary};
@@ -106,4 +88,19 @@ export const IconButton = styled.button`
   }
 `;
 
-export const Dots = styled.ul``;
+export const Dots = styled.div`
+  @media (min-width: 769px) {
+    display: none;
+  }
+  ${df_ac_jc}
+  gap:10px;
+  & button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #d8d8d8;
+    &.active {
+      background-color: #8a8a8a;
+    }
+  }
+`;

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "position": "Front-end Developer at Algorithm Solutions",
+    "period": "Since Jan 2022",
+    "responsibilities": [
+      {
+        "id": 1,
+        "responsibility": "Produce, maintain and modify websites using Front-end technologies;"
+      },
+      {
+        "id": 2,
+        "responsibility": "Create tools that improve user experience;"
+      },
+      {
+        "id": 3,
+        "responsibility": "Ensure that websites are accessible across many platforms and devices;"
+      },
+      {
+        "id": 4,
+        "responsibility": "Build, debug, optimize code for future use;"
+      },
+      {
+        "id": 5,
+        "responsibility": "Collaborate with team members to find better solutions."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "position": "Pharmacist",
+    "period": "Sep 2020 - Apr 2021",
+    "responsibilities": [
+      {
+        "id": 1,
+        "responsibility": "Reviewed prescriptions from doctors to ensure accuracy, to evaluate their suitability for the patient;"
+      },
+      {
+        "id": 2,
+        "responsibility": "Provided information and advice about drugs, their side effects, correct dosage, and proper storage;"
+      },
+      {
+        "id": 3,
+        "responsibility": "Advised customers on the selection of medication brands, medical equipment or healthcare supplies;"
+      },
+      {
+        "id": 4,
+        "responsibility": "Analysed prescribing trends, consumer preferences for OTC drugs."
+      }
+    ]
+  }
+]

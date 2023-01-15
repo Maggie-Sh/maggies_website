@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   Container,
   ImageWrapper,
@@ -6,6 +6,7 @@ import {
   Slides,
   Slide,
   IconButton,
+  Dots,
 } from "./styled";
 import img from "../../assets/slider_img.jpg";
 import { items } from "./data";
@@ -13,8 +14,8 @@ import { ThemeContext } from "../../App";
 import { AppContextInterface } from "../../App";
 import EastIcon from "@mui/icons-material/East";
 
-type MouseE = React.MouseEvent<HTMLLIElement, MouseEvent>;
-type TouchE = React.TouchEvent<HTMLLIElement>;
+type MouseE = React.MouseEvent<HTMLDivElement, MouseEvent>;
+type TouchE = React.TouchEvent<HTMLDivElement>;
 type E = MouseE | TouchE;
 type EventHandler = (e: E, i: number) => void;
 
@@ -22,63 +23,63 @@ const Slider = () => {
   const { theme } = useContext(ThemeContext) as AppContextInterface;
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsCount = items.length - 1;
-  const [isDragging, setIsDragging] = useState(false);
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [startPosition, setStartPosition] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
   const handleTranslate = () => {
-    currentSlide === itemsCount
-      ? setCurrentSlide(0)
-      : setCurrentSlide((prev) => prev + 1);
+    if (currentSlide === itemsCount) {
+      setCurrentSlide(0);
+      setCurrentTranslate(0);
+    } else {
+      setCurrentSlide((prev) => prev + 1);
+      setCurrentTranslate((prev) => prev - 100);
+    }
   };
 
-  useEffect(() => {
-    // console.log("hello", currentSlide);
-    setCurrentTranslate(currentSlide * -100);
-  }, [currentSlide]);
+  const handleDotClick = (i: number) => {
+    setCurrentSlide(i);
+    setCurrentTranslate(i * -100);
+  };
 
-  useEffect(() => {
-    const minTranslate = 0;
-    const maxTranslate = -(itemsCount * 100);
-    const diff = currentPosition - startPosition;
-    if (
-      diff + currentTranslate <= minTranslate &&
-      diff + currentTranslate >= maxTranslate
-    ) {
-      setCurrentTranslate(diff + currentTranslate);
-    }
-  }, [currentPosition]);
-
-  const getPosition = (
-    e: E,
-    setValue: React.Dispatch<React.SetStateAction<number>>
-  ) => {
+  const getPosition = (e: E) => {
     let ev;
     if (e.type.includes("mouse")) {
       ev = e as MouseE;
-      setValue(ev.pageX);
+      return ev.pageX;
     } else {
       ev = e as TouchE;
-      setValue(ev.touches[0].clientX);
+      return ev.touches[0].pageX;
     }
   };
 
   const onTouchStart: EventHandler = (e, i) => {
-    getPosition(e, setStartPosition);
-    setIsDragging(true);
+    const pageX = getPosition(e);
+    setCurrentPosition(pageX);
+    setStartPosition(pageX);
   };
+
   const onTouchEnd: EventHandler = (e, i) => {
-    const mid = (itemsCount * 100) / 2;
-    // console.log(currentTranslate);
-    const ind = Math.abs(Math.round(currentTranslate / 100));
-    setCurrentSlide(ind);
-    setIsDragging(false);
+    const diff = currentPosition - startPosition;
+    if (
+      diff &&
+      currentTranslate + diff <= 0 &&
+      currentTranslate + diff >= -(itemsCount * 100)
+    ) {
+      if (diff < 0) {
+        currentSlide <= itemsCount && setCurrentSlide((prev) => prev + 1);
+        setCurrentTranslate((prev) => Math.floor((prev + diff) / 100) * 100);
+      } else {
+        currentSlide >= 0 && setCurrentSlide((prev) => prev - 1);
+        setCurrentTranslate((prev) => Math.ceil((prev + diff) / 100) * 100);
+      }
+      setCurrentPosition(0);
+      setStartPosition(0);
+    }
   };
   const onTouchMove: EventHandler = (e, i) => {
-    if (isDragging) {
-      getPosition(e, setCurrentPosition);
-    }
+    const pageX = getPosition(e);
+    setCurrentPosition(pageX);
   };
 
   return (
@@ -87,9 +88,10 @@ const Slider = () => {
         <img src={img} alt="Maggie" />
       </ImageWrapper>
       <SliderContainer>
-        <Slides translate={currentTranslate}>
+        <Slides>
           {items.map((item, i) => (
             <Slide
+              transl={currentTranslate}
               key={item.id}
               theme={theme}
               onDragStart={(e) => {
@@ -97,25 +99,27 @@ const Slider = () => {
                 e.stopPropagation();
               }}
               onTouchStart={(e) => {
-                // console.log(e.type, "type");
                 onTouchStart(e, i);
               }}
               onTouchEnd={(e) => onTouchEnd(e, i)}
               onTouchMove={(e) => onTouchMove(e, i)}
-              onMouseDown={(e) => {
-                onTouchStart(e, i);
-              }}
-              onMouseMove={(e) => onTouchMove(e, i)}
-              onMouseUp={(e) => onTouchEnd(e, i)}
-              onMouseLeave={(e) => onTouchEnd(e, i)}
             >
-              <h3>{item.content}</h3>
+              {item.content}
             </Slide>
           ))}
         </Slides>
         <IconButton theme={theme} onClick={handleTranslate}>
           <EastIcon />
         </IconButton>
+        <Dots>
+          {Array.from({ length: items.length }).map((el, i) => (
+            <button
+              key={i}
+              onClick={() => handleDotClick(i)}
+              className={i === currentSlide ? "active" : ""}
+            />
+          ))}
+        </Dots>
       </SliderContainer>
     </Container>
   );

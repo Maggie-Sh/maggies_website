@@ -1,0 +1,60 @@
+{
+  "professional_skills": [
+    {
+      "id": 1,
+      "skill_highlighted": "JavaScript, HTML, CSS;"
+    },
+    {
+      "id": 2,
+      "skill_highlighted": "React.js ",
+      "skill": "(libraries and tools in React Ecosystem: react-router, material-ui, styled components);"
+    },
+    {
+      "id": 3,
+      "skill_highlighted": "Redux.js ",
+      "skill": "(Redux Toolkit, RTK Query);"
+    },
+    {
+      "id": 4,
+      "skill_highlighted": "TypeScript;"
+    },
+    {
+      "id": 5,
+      "skill": "VCS: Git, GitHub;"
+    },
+    {
+      "id": 6,
+      "skill": "WM tools: Jira;"
+    }
+  ],
+  "soft_skills": [
+    {
+      "id": 1,
+      "skill": "Attention to detail and problem-solving skills;"
+    },
+    {
+      "id": 2,
+      "skill": "Willingness to learn new technologies;"
+    },
+    {
+      "id": 3,
+      "skill": "Ability to perform multifaceted work requiring initiative and creative approach;"
+    },
+    {
+      "id": 4,
+      "skill": "Strong communication and representative skills;"
+    },
+    {
+      "id": 5,
+      "skill": "Able to perform well under stressful conditions and driven to demonstrate exceptional results;"
+    },
+    {
+      "id": 6,
+      "skill": "Recognize and improve from mistakes;"
+    },
+    {
+      "id": 7,
+      "skill": "Work great alone, but better on a team."
+    }
+  ]
+}

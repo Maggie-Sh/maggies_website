@@ -7,9 +7,10 @@ import Skills from "./pages/skills";
 import Experience from "./pages/experience";
 import Contacts from "./pages/contacts";
 import { Theme, light, dark } from "./theme/theme";
-import { Container } from "./shared/styled";
+import { Container, Main } from "./shared/styled";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
+import Footer from "./components/footer";
 export interface AppContextInterface {
   theme: Theme;
   toggleTheme: () => void;
@@ -34,13 +35,16 @@ function App() {
           className={isShowMenu ? "overflow-hidden" : "overflow-overlay"}
         >
           <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/contacts" element={<Contacts />} />
-          </Routes>
+          <Main theme={theme}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/experience" element={<Experience />} />
+              <Route path="/contacts" element={<Contacts />} />
+            </Routes>
+          </Main>
+          <Footer />
         </Container>
       </BrowserRouter>
     </ThemeContext.Provider>

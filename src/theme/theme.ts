@@ -11,7 +11,6 @@ export const light: Theme = {
   name: "light",
   primary: "#404040",
   secondary: "#e67575",
-  // secondary: "#a39193",
   background: "#f4ece6",
   secondary_background: "#f9f5f3",
   scrollbar_color: "#c2bebc",

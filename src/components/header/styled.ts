@@ -1,5 +1,11 @@
 import styled, { css } from "styled-components";
-import { df_ac_jsb, dfc_as_jcs, df_ac_jc } from "../../shared/styled";
+import {
+  df_ac_jsb,
+  dfc_as_jcs,
+  df_ac_jc,
+  padding,
+  typo,
+} from "../../shared/styled";
 import { NavLink } from "react-router-dom";
 
 const underline = css`
@@ -17,14 +23,13 @@ const linktransition = css`
 `;
 
 export const HeaderSt = styled.header`
-  padding: 20px 40px;
+  max-height: 70px;
+  height: 100%;
+  ${padding}
   color: ${({ theme }) => theme.primary};
   background-color: ${({ theme }) => theme.background};
   ${df_ac_jsb}
   transition: all 300ms ease-out;
-  @media (max-width: 1024px) {
-    padding: 20px;
-  }
 `;
 
 export const NavBackground = styled.div`
@@ -61,7 +66,7 @@ export const Nav = styled.nav`
 
 export const CustomLink = styled(NavLink)`
   color: ${({ theme }) => theme.primary};
-  font-size: 24px;
+  ${typo}
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
@@ -70,7 +75,6 @@ export const CustomLink = styled(NavLink)`
   &::after {
     content: "";
     ${underline}
-
     transform: scale(0);
     transform-origin: left;
     ${linktransition}
@@ -83,13 +87,11 @@ export const CustomLink = styled(NavLink)`
       ${linktransition}
     }
   }
-  &.active {
-    &::after {
-      top: 50%;
-      width: 100%;
-      transform: translateY(-50%);
-      background-color: ${({ theme }) => theme.primary};
-    }
+  &.active::after {
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    background-color: ${({ theme }) => theme.primary};
   }
   @media (max-width: 768px) {
     color: ${({ theme }) => theme.primary};
