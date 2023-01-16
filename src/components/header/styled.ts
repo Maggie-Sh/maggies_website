@@ -96,7 +96,7 @@ export const CustomLink = styled(NavLink)`
   @media (max-width: 768px) {
     color: ${({ theme }) => theme.primary};
     margin-bottom: 20px;
-    &.active::after {
+    &::after {
       background-color: ${({ theme }) => theme.primary};
     }
   }

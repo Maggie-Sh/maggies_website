@@ -11,6 +11,7 @@ import { Container, Main } from "./shared/styled";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 import Footer from "./components/footer";
+import NotFound from "./pages/not-found";
 export interface AppContextInterface {
   theme: Theme;
   toggleTheme: () => void;
@@ -42,6 +43,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/contacts" element={<Contacts />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Main>
           <Footer />

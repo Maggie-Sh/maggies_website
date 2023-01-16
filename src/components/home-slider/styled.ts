@@ -98,9 +98,10 @@ export const Dots = styled.div`
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: #d8d8d8;
+    background-color: ${({ theme }) => theme.secondary};
+    opacity: 0.5;
     &.active {
-      background-color: #8a8a8a;
+      opacity: 1;
     }
   }
 `;

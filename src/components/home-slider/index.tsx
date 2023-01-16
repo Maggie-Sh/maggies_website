@@ -23,14 +23,14 @@ const Slider = () => {
   const { theme } = useContext(ThemeContext) as AppContextInterface;
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsCount = items.length - 1;
-  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(-0);
   const [startPosition, setStartPosition] = useState(0);
   const [currentPosition, setCurrentPosition] = useState(0);
 
   const handleTranslate = () => {
     if (currentSlide === itemsCount) {
       setCurrentSlide(0);
-      setCurrentTranslate(0);
+      setCurrentTranslate(-0);
     } else {
       setCurrentSlide((prev) => prev + 1);
       setCurrentTranslate((prev) => prev - 100);
@@ -61,17 +61,17 @@ const Slider = () => {
 
   const onTouchEnd: EventHandler = (e, i) => {
     const diff = currentPosition - startPosition;
-    if (
-      diff &&
-      currentTranslate + diff <= 0 &&
-      currentTranslate + diff >= -(itemsCount * 100)
-    ) {
+    if (diff) {
       if (diff < 0) {
-        currentSlide <= itemsCount && setCurrentSlide((prev) => prev + 1);
-        setCurrentTranslate((prev) => Math.floor((prev + diff) / 100) * 100);
+        if (currentSlide < itemsCount) {
+          setCurrentSlide((prev) => prev + 1);
+          setCurrentTranslate((prev) => prev - 100);
+        }
       } else {
-        currentSlide >= 0 && setCurrentSlide((prev) => prev - 1);
-        setCurrentTranslate((prev) => Math.ceil((prev + diff) / 100) * 100);
+        if (currentSlide > 0) {
+          setCurrentSlide((prev) => prev - 1);
+          setCurrentTranslate((prev) => prev + 100);
+        }
       }
       setCurrentPosition(0);
       setStartPosition(0);
@@ -111,7 +111,7 @@ const Slider = () => {
         <IconButton theme={theme} onClick={handleTranslate}>
           <EastIcon />
         </IconButton>
-        <Dots>
+        <Dots theme={theme}>
           {Array.from({ length: items.length }).map((el, i) => (
             <button
               key={i}

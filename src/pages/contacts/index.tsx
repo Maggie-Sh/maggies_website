@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../../App";
 import { AppContextInterface } from "../../App";
@@ -11,22 +10,20 @@ const Contacts = () => {
     <Container>
       <div className="wrapper">
         {data.map((contact) => (
-          <>
-            <Item key={contact.name} theme={theme}>
-              <span className="name">{contact.name}</span>
-              <a
-                href={
-                  contact.type === "link"
-                    ? contact.value
-                    : `mailto:${contact.value}`
-                }
-                target="_blank"
-                rel="noreferrer"
-              >
-                {contact.value}
-              </a>
-            </Item>
-          </>
+          <Item key={contact.name} theme={theme}>
+            <span className="name">{contact.name}</span>
+            <a
+              href={
+                contact.type === "link"
+                  ? contact.value
+                  : `mailto:${contact.value}`
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              {contact.value}
+            </a>
+          </Item>
         ))}
       </div>
     </Container>
