@@ -17,7 +17,7 @@ import EastIcon from "@mui/icons-material/East";
 type MouseE = React.MouseEvent<HTMLDivElement, MouseEvent>;
 type TouchE = React.TouchEvent<HTMLDivElement>;
 type E = MouseE | TouchE;
-type EventHandler = (e: E, i: number) => void;
+type EventHandler = (e: E) => void;
 
 const Slider = () => {
   const { theme } = useContext(ThemeContext) as AppContextInterface;
@@ -53,13 +53,13 @@ const Slider = () => {
     }
   };
 
-  const onTouchStart: EventHandler = (e, i) => {
+  const onTouchStart: EventHandler = (e) => {
     const pageX = getPosition(e);
     setCurrentPosition(pageX);
     setStartPosition(pageX);
   };
 
-  const onTouchEnd: EventHandler = (e, i) => {
+  const onTouchEnd: EventHandler = (e) => {
     const diff = currentPosition - startPosition;
     if (diff) {
       if (diff < 0) {
@@ -77,7 +77,7 @@ const Slider = () => {
       setStartPosition(0);
     }
   };
-  const onTouchMove: EventHandler = (e, i) => {
+  const onTouchMove: EventHandler = (e) => {
     const pageX = getPosition(e);
     setCurrentPosition(pageX);
   };
@@ -98,11 +98,9 @@ const Slider = () => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
-              onTouchStart={(e) => {
-                onTouchStart(e, i);
-              }}
-              onTouchEnd={(e) => onTouchEnd(e, i)}
-              onTouchMove={(e) => onTouchMove(e, i)}
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
+              onTouchMove={onTouchMove}
             >
               {item.content}
             </Slide>
